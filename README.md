@@ -4,6 +4,11 @@
 costs the most?** Two years of hourly data across eight regional grid operators
 say mostly no, with one real exception and a couple of surprises underneath.
 
+**[Open the live, interactive dashboard →](https://josealemanm.github.io/grid-stress-dashboard/powerbi/dashboard.html)**
+No installation needed — it runs in the browser. The full Power BI project with
+slicers and cross-filtering is also in the repo; see
+[The Power BI report](#the-power-bi-report) below.
+
 ![Forecast error, normal hours vs. stress hours, by region](docs/screenshots/normal_vs_stress.png)
 
 ---
