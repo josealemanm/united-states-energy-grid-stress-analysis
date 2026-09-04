@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p2month",
   "position": {
     "x": 646,
     "y": 136,
     "z": 11,
-    "height": 264,
     "width": 614,
+    "height": 264,
     "tabOrder": 6
   },
   "visual": {
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "dim_date.year_month",
-              "nativeQueryRef": "year_month",
-              "active": true
+              "nativeQueryRef": "year_month"
             }
           ]
         },

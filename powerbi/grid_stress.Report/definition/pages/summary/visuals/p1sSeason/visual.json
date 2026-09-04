@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p1sSeason",
   "position": {
     "x": 437,
     "y": 72,
     "z": 7,
-    "height": 52,
     "width": 405,
+    "height": 52,
     "tabOrder": 3
   },
   "visual": {
@@ -28,7 +28,6 @@
               },
               "queryRef": "dim_date.season",
               "nativeQueryRef": "season",
-              "active": true,
               "displayName": "Season"
             }
           ]

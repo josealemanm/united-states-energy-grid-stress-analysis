@@ -311,7 +311,7 @@ def date_between_filter(fname, entity, prop, lo, hi, source="d"):
 
 
 # --------------------------------------------------------------- chrome ----
-META = "EIA-930  ·  8 balancing authorities  ·  Sep 2024 – Sep 2026  ·  139,055 BA-hours"
+META = "EIA-930  |  8 balancing authorities  |  Sep 2024 to Sep 2026  |  139,055 BA-hours"
 SOURCE = "Source: U.S. EIA, Form EIA-930 API v2, pulled 2 September 2026."
 
 

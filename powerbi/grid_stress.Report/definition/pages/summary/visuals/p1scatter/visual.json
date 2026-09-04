@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p1scatter",
   "position": {
     "x": 20,
     "y": 512,
     "z": 22,
-    "height": 168,
     "width": 491,
+    "height": 168,
     "tabOrder": 12
   },
   "visual": {
@@ -27,27 +27,7 @@
                 }
               },
               "queryRef": "dim_ba.ba_code",
-              "nativeQueryRef": "ba_code",
-              "active": true
-            }
-          ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Net Import at Stress (MW)"
-                }
-              },
-              "queryRef": "_Measures.Net Import at Stress (MW)",
-              "nativeQueryRef": "Net Import at Stress (MW)",
-              "active": true
+              "nativeQueryRef": "ba_code"
             }
           ]
         },
@@ -68,12 +48,33 @@
               "nativeQueryRef": "Stress Penalty (pp)"
             }
           ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Net Import at Stress (MW)"
+                }
+              },
+              "queryRef": "_Measures.Net Import at Stress (MW)",
+              "nativeQueryRef": "Net Import at Stress (MW)"
+            }
+          ]
         }
       }
     },
     "objects": {
       "y1AxisReferenceLine": [
         {
+          "selector": {
+            "id": "zeroLine"
+          },
           "properties": {
             "show": {
               "expr": {
@@ -121,9 +122,6 @@
                 }
               }
             }
-          },
-          "selector": {
-            "id": "zeroLine"
           }
         }
       ],

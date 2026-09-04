@@ -588,12 +588,12 @@ These come from `ROW_HEIGHTS` and `COLUMN_WEIGHTS` in
 
 | Page | Rows |
 |---|---|
-| 1 Summary | 5 KPI tiles (96) · column chart 3 : table 2 (256) · scatter 2 : table 3 (168) |
-| 2 Anatomy | line : column (264) · histogram : bias column : bias table (268) |
-| 3 Skill | 4 KPI tiles (96) · column 3 : table 2 (256) · column : line (168) |
-| 4 Deep Dive | 4 KPI tiles (96) · load line 2 : error area 1 (210) · fuel area 2 : imports line 1 (214) |
-| 5 Two Lenses | bar : table (328) · ramp column 2 : overlap column 1 (268) |
-| 6 Methodology | three definition panels (268) · balance table 2 : intervals panel 1 (328) |
+| 1 Summary | 5 KPI tiles (96); column chart 3 : table 2 (256); scatter 2 : table 3 (168) |
+| 2 Anatomy | line : column (264); histogram : bias column : bias table (268) |
+| 3 Skill | 4 KPI tiles (96); column 3 : table 2 (256); column : line (168) |
+| 4 Deep Dive | 4 KPI tiles (96); load line 2 : error area 1 (210); fuel area 2 : imports line 1 (214) |
+| 5 Two Lenses | bar : table (328); ramp column 2 : overlap column 1 (268) |
+| 6 Methodology | three definition panels (268); balance table 2 : intervals panel 1 (328) |
 
 ### Page 1: `Summary`
 

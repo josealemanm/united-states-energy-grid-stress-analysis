@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p4err",
   "position": {
     "x": 851,
     "y": 244,
     "z": 21,
-    "height": 210,
     "width": 409,
+    "height": 210,
     "tabOrder": 9
   },
   "visual": {
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "fact_grid_hourly.ts_local",
-              "nativeQueryRef": "ts_local",
-              "active": true
+              "nativeQueryRef": "ts_local"
             }
           ]
         },
@@ -61,6 +60,9 @@
     "objects": {
       "y1AxisReferenceLine": [
         {
+          "selector": {
+            "id": "zeroLine"
+          },
           "properties": {
             "show": {
               "expr": {
@@ -108,9 +110,6 @@
                 }
               }
             }
-          },
-          "selector": {
-            "id": "zeroLine"
           }
         }
       ],

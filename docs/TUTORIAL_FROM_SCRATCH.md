@@ -2881,7 +2881,7 @@ See [reports/data_quality_report.md](reports/data_quality_report.md).
 
 ## Stack
 
-Python (pandas, requests, pyarrow) · SQL (DuckDB) · Power BI · Excel
+Python (pandas, requests, pyarrow); SQL (DuckDB); Power BI; Excel
 ```
 
 ## 13.3 Screenshots

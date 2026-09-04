@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p4fuel",
   "position": {
     "x": 20,
     "y": 466,
     "z": 22,
-    "height": 214,
     "width": 819,
+    "height": 214,
     "tabOrder": 10
   },
   "visual": {
@@ -27,26 +27,7 @@
                 }
               },
               "queryRef": "fact_fuel_hourly.ts_local",
-              "nativeQueryRef": "ts_local",
-              "active": true
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_fuel"
-                    }
-                  },
-                  "Property": "fuel_name"
-                }
-              },
-              "queryRef": "dim_fuel.fuel_name",
-              "nativeQueryRef": "fuel_name"
+              "nativeQueryRef": "ts_local"
             }
           ]
         },
@@ -71,6 +52,24 @@
               "queryRef": "Sum(fact_fuel_hourly.generation_mw)",
               "nativeQueryRef": "Sum of generation_mw",
               "displayName": "Generation"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_fuel"
+                    }
+                  },
+                  "Property": "fuel_name"
+                }
+              },
+              "queryRef": "dim_fuel.fuel_name",
+              "nativeQueryRef": "fuel_name"
             }
           ]
         }

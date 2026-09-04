@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p2hour",
   "position": {
     "x": 20,
     "y": 136,
     "z": 10,
-    "height": 264,
     "width": 614,
+    "height": 264,
     "tabOrder": 5
   },
   "visual": {
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "fact_grid_hourly.hour_local",
-              "nativeQueryRef": "hour_local",
-              "active": true
+              "nativeQueryRef": "hour_local"
             }
           ]
         },

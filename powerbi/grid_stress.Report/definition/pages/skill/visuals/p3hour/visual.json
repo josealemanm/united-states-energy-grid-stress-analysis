@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p3hour",
   "position": {
     "x": 646,
     "y": 512,
     "z": 23,
-    "height": 168,
     "width": 614,
+    "height": 168,
     "tabOrder": 11
   },
   "visual": {
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "fact_grid_hourly.hour_local",
-              "nativeQueryRef": "hour_local",
-              "active": true
+              "nativeQueryRef": "hour_local"
             }
           ]
         },
@@ -55,6 +54,9 @@
     "objects": {
       "y1AxisReferenceLine": [
         {
+          "selector": {
+            "id": "zeroLine"
+          },
           "properties": {
             "show": {
               "expr": {
@@ -102,9 +104,6 @@
                 }
               }
             }
-          },
-          "selector": {
-            "id": "zeroLine"
           }
         }
       ],

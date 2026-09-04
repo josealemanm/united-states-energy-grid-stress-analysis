@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p3persist",
   "position": {
     "x": 20,
     "y": 512,
     "z": 22,
-    "height": 168,
     "width": 614,
+    "height": 168,
     "tabOrder": 10
   },
   "visual": {
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "dim_ba.ba_code",
-              "nativeQueryRef": "ba_code",
-              "active": true
+              "nativeQueryRef": "ba_code"
             }
           ]
         },

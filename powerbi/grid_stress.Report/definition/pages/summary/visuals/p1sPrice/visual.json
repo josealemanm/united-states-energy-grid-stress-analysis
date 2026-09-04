@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p1sPrice",
   "position": {
     "x": 854,
     "y": 72,
     "z": 8,
-    "height": 52,
     "width": 406,
+    "height": 52,
     "tabOrder": 4
   },
   "visual": {
@@ -28,7 +28,6 @@
               },
               "queryRef": "Price per MWh.Price per MWh",
               "nativeQueryRef": "Price per MWh",
-              "active": true,
               "displayName": "Price"
             }
           ]

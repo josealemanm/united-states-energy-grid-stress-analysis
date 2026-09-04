@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p4load",
   "position": {
     "x": 20,
     "y": 244,
     "z": 20,
-    "height": 210,
     "width": 819,
+    "height": 210,
     "tabOrder": 8
   },
   "visual": {
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "fact_grid_hourly.ts_local",
-              "nativeQueryRef": "ts_local",
-              "active": true
+              "nativeQueryRef": "ts_local"
             }
           ]
         },

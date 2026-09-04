@@ -20,7 +20,7 @@
                 "horizontalTextAlignment": "right",
                 "textRuns": [
                   {
-                    "value": "EIA-930  ·  8 balancing authorities  ·  Sep 2024 – Sep 2026  ·  139,055 BA-hours",
+                    "value": "EIA-930  |  8 balancing authorities  |  Sep 2024 to Sep 2026  |  139,055 BA-hours",
                     "textStyle": {
                       "fontSize": "8.0pt",
                       "fontFamily": "Segoe UI",
@@ -137,7 +137,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'EIA-930  ·  8 balancing authorities  ·  Sep 2024 – Sep 2026  ·  139,055 BA-hours'"
+                  "Value": "'EIA-930  |  8 balancing authorities  |  Sep 2024 to Sep 2026  |  139,055 BA-hours'"
                 }
               }
             }

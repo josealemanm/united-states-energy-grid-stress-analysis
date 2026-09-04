@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p5overlap",
   "position": {
     "x": 851,
     "y": 412,
     "z": 13,
-    "height": 268,
     "width": 409,
+    "height": 268,
     "tabOrder": 5
   },
   "visual": {
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "dim_ba.ba_code",
-              "nativeQueryRef": "ba_code",
-              "active": true
+              "nativeQueryRef": "ba_code"
             }
           ]
         },

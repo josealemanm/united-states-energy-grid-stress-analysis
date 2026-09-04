@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
   "name": "p5bars",
   "position": {
     "x": 20,
     "y": 72,
     "z": 10,
-    "height": 328,
     "width": 614,
+    "height": 328,
     "tabOrder": 2
   },
   "visual": {
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "dim_ba.ba_code",
-              "nativeQueryRef": "ba_code",
-              "active": true
+              "nativeQueryRef": "ba_code"
             }
           ]
         },
@@ -87,6 +86,9 @@
     "objects": {
       "y1AxisReferenceLine": [
         {
+          "selector": {
+            "id": "zeroLine"
+          },
           "properties": {
             "show": {
               "expr": {
@@ -134,9 +136,6 @@
                 }
               }
             }
-          },
-          "selector": {
-            "id": "zeroLine"
           }
         }
       ],
@@ -330,51 +329,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "d327471630937868a4c5",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_ba"
-              }
-            },
-            "Property": "ba_code"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "1515c39a9b5ebe95ffd4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures"
-              }
-            },
-            "Property": "Stress Penalty (pp)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "694553c230f42ca9cc1c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures"
-              }
-            },
-            "Property": "Ramp Stress Penalty (pp)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
