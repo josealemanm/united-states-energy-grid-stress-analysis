@@ -402,7 +402,7 @@ def main():
         return pio.to_html(fig, include_plotlyjs=False, full_html=False)
 
     parts = [f"""<!doctype html><html><head><meta charset="utf-8">
-    <title>Grid Stress Dashboard</title>
+    <title>United States Energy Grid Stress Analysis</title>
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <style>
     body{{font-family:Segoe UI,Arial,sans-serif;max-width:1100px;margin:0 auto;padding:24px;color:#222}}
@@ -414,7 +414,7 @@ def main():
     .subtitle{{color:#555}}
     .grid2{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
     </style></head><body>
-    <h1>Grid Stress Dashboard</h1>
+    <h1>United States Energy Grid Stress Analysis</h1>
     <p class="subtitle">Does the U.S. power grid forecast worst exactly when accuracy matters most?
     Eight balancing authorities, {window_start} to {window_end}.</p>
 
