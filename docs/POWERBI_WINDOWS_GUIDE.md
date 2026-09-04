@@ -32,8 +32,6 @@ show.
 > written before the analysis existed and its table list, column names and
 > headline numbers are all out of date. Where the two disagree, this file wins.
 
----
-
 ## 0. Setup (15 minutes)
 
 Skip this if you already opened `powerbi/grid_stress.pbip`.
@@ -62,8 +60,6 @@ Skip this if you already opened `powerbi/grid_stress.pbip`.
    ```
 
 If that folder is empty, you are on the wrong branch.
-
----
 
 ## 0b. Changing the layout
 
@@ -159,8 +155,6 @@ carry an empty strip.
   series, dark navy the stress-hours series, because they are always dropped in
   that order. Red is only ever a zero line.
 
----
-
 ## 1. What you are looking at (5 minutes, do not skip)
 
 Power BI has three views. The icons are on the **far left edge** of the window,
@@ -185,15 +179,13 @@ Two habits that will save you pain:
 - When a visual looks wrong, click it once and look at the field wells before
   changing anything else. Nine times out of ten a field is in the wrong well.
 
----
-
 ## 2. Load the data (20 minutes)
 
 You are loading **eight** things: seven parquet tables and one CSV.
 
 For **each** of the seven parquet files:
 
-1. **Home** ribbon → **Get data** → **More...**
+1. **Home** ribbon > **Get data** > **More...**
 2. Type `Parquet` in the search box, select **Parquet**, click **Connect**
 3. Click **Browse**, go to `data\processed`, pick the file, **Open**
 4. Click **OK**, then in the preview window click **Load**
@@ -213,12 +205,12 @@ The seven files:
 Then the CSV, which the old tutorial does not mention and which matters more
 than anything else on this list:
 
-8. **Get data** → **Text/CSV** → `reports\bootstrap_intervals.csv` → **Load**
+8. **Get data** > **Text/CSV** > `reports\bootstrap_intervals.csv` > **Load**
 
 **Why that CSV matters.** It holds the 95% confidence intervals. Without it you
 will build charts showing point estimates, and the point estimates lie: they say
 Southwest Power Pool is the second-worst region at +0.42 percentage points, when
-its interval is [−0.98, +1.93], i.e. indistinguishable from no effect at all.
+its interval is [-0.98, +1.93], i.e. indistinguishable from no effect at all.
 Half the value of this project is showing that distinction.
 
 > **If the Parquet connector errors out** (older Power BI builds sometimes do),
@@ -227,13 +219,11 @@ Half the value of this project is showing that distinction.
 > 86 MB so they are deliberately not committed, so you would need to copy them
 > across manually.
 
----
-
 ## 3. Fix the column types (10 minutes)
 
 A wrong type breaks filters silently, with no error. Check these.
 
-**Home** → **Transform data** opens the Power Query Editor. Click each table in
+**Home** > **Transform data** opens the Power Query Editor. Click each table in
 the Queries list on the left and look at the small icon on the left of each
 column header.
 
@@ -254,8 +244,6 @@ On `dim_date`: `date_key` must be Date, `is_weekend` True/False.
 
 When done, **Close & Apply** (top left). This takes a minute on the fuel table.
 
----
-
 ## 4. The fuel table already has its date (nothing to do)
 
 An earlier draft of this guide had you add `date_key` to `fact_fuel_hourly` as
@@ -273,8 +261,6 @@ facts by one day for a third of every year.
 `ts_local` and `date_key` on the fuel table. Both facts land on the same
 calendar day, and a fuel chart and a demand chart can share one x axis. If your
 copy of `fact_fuel_hourly` has only `ts_utc`, re-run `make warehouse`.
-
----
 
 ## 5. Draw the relationships (15 minutes)
 
@@ -305,27 +291,23 @@ Never set cross-filter to "Both". Single direction, dimension filters fact, is
 correct star-schema wiring and is the first thing anyone who knows Power BI will
 check in an interview.
 
-**Mark the date table:** click `dim_date` in the Data pane → **Table tools**
-ribbon → **Mark as date table** → choose `date_key` → OK.
-
----
+**Mark the date table:** click `dim_date` in the Data pane > **Table tools**
+ribbon > **Mark as date table** > choose `date_key` > OK.
 
 ## 6. Make a home for measures (2 minutes)
 
-1. **Home** → **Enter data**
+1. **Home** > **Enter data**
 2. Do not type any data. Set **Name** to `_Measures` (the underscore sorts it to
    the top) and click **Load**
 3. After you create your first measure below, right-click the leftover empty
    `Column1` and delete it
 
----
-
 ## 7. The cost slider (5 minutes)
 
-1. **Modeling** ribbon → **New parameter** → **Numeric range**
+1. **Modeling** ribbon > **New parameter** > **Numeric range**
 2. Name: `Price per MWh`
 3. Minimum `40`, Maximum `200`, Increment `10`, Default `100`
-4. Leave "Add slicer to this page" checked → **Create**
+4. Leave "Add slicer to this page" checked > **Create**
 
 These are the sourced low/central/high values from the Excel assumptions
 register. The slider lets a viewer watch the dollar figure move, which makes it
@@ -333,11 +315,9 @@ obvious the number is an assumption rather than a measurement.
 
 **Save now** (Ctrl+S) into `powerbi\` as `grid_stress`.
 
----
-
 ## 8. The measures (45 minutes)
 
-For each one: click `_Measures` in the Data pane, then **Home** → **New
+For each one: click `_Measures` in the Data pane, then **Home** > **New
 measure**, then paste the whole block including the name and `=`. One measure
 per New measure click. Do not paste several at once.
 
@@ -571,25 +551,23 @@ reserves and demand response absorb some of it.
 
 Select each measure, then **Measure tools** ribbon:
 
-- `(%)` and `(pp)` → Decimal, 2 places
-- skill measures, `Hours Forecast Ran High (%)`, `Bias Share of Error` →
+- `(%)` and `(pp)` > Decimal, 2 places
+- skill measures, `Hours Forecast Ran High (%)`, `Bias Share of Error` >
   Percentage, 1 place. These are fractions, not percentage points; formatting
   them as plain decimals shows `0.26` where a reader expects `26.1%`
-- `(MW)`, `(MWh)` → Whole number, thousands separator
-- `($M)` → Currency, 1 decimal
-- `Stress Multiple` → Decimal, 2 places
+- `(MW)`, `(MWh)` > Whole number, thousands separator
+- `($M)` > Currency, 1 decimal
+- `Stress Multiple` > Decimal, 2 places
 
 Fourteen decimal places is the fastest way to make good work look unfinished.
-
----
 
 ## 9. The six pages (90 minutes)
 
 Add a page with the **+** at the bottom. Double-click the tab to rename. Pages
 are named `1 Summary`, `2 Anatomy` and so on, so the tab strip reads in order.
 
-Every visual is built the same way: click empty canvas → click a chart icon in
-the Visualizations pane → drag fields from the Data pane into the field wells →
+Every visual is built the same way: click empty canvas > click a chart icon in
+the Visualizations pane > drag fields from the Data pane into the field wells >
 use the paint-roller **Format** icon to set the title, subtitle and position.
 
 **Rule for every title: say what is plotted.** "Mean absolute % error by
@@ -624,13 +602,13 @@ Slicers first: add a **Slicer**, drag `dim_ba[ba_name]` in. Add a second with
 
 Five **Card** visuals across the top: `MAPE Normal (%)`, `MAPE Stress (%)`,
 `Penalty With Interval`, `Skill Normal`, `Stress Shortfall Upper Bound ($M)`.
-Retitle each card in Format → General → Title, since the raw measure name is not
+Retitle each card in Format > General > Title, since the raw measure name is not
 self-explanatory.
 
 The third card is `Penalty With Interval`, not `Stress Penalty (pp)`, and that
 is deliberate: a bare penalty on a card is exactly the naked point estimate this
 report exists to avoid. It holds a string rather than a number, so drop its
-value font to about 15pt in Format → Callout value, or it truncates.
+value font to about 15pt in Format > Callout value, or it truncates.
 
 Main visual, **Clustered column chart**: `dim_ba[ba_code]` on X-axis;
 `MAPE Normal (%)` and `MAPE Stress (%)` both on Y-axis. This is the picture that
@@ -686,8 +664,8 @@ This page did not exist in the old tutorial and it is one of the strongest.
 | Table | `ba_code`, `Skill Normal`, `Skill Stress`, `MAPE (%)`, `MAPE Clean (%)` |
 | Two text panels | why skill rather than error; why the two negatives differ |
 
-Add a constant line at zero: select the chart → **Add further analyses** (the
-magnifying glass) → **Constant line** → Value 0 → make it red.
+Add a constant line at zero: select the chart > **Add further analyses** (the
+magnifying glass) > **Constant line** > Value 0 > make it red.
 
 CISO and SWPP go below the line. That is the finding. The table earns the tall
 row rather than the text, because it has nine rows to show and text does not
@@ -731,7 +709,7 @@ Title it:
 
 ### Page 6: `Methodology`
 
-Mostly text boxes (**Insert** → **Text box**) and one table. Almost nobody
+Mostly text boxes (**Insert** > **Text box**) and one table. Almost nobody
 builds this page, which is exactly why it is worth building.
 
 1. The question, verbatim
@@ -748,8 +726,6 @@ When you walk someone through this file: sixty seconds on page 1, then jump
 straight here. Volunteering your own limitations before anyone asks is the
 single most credibility-building move in a portfolio review.
 
----
-
 ## 10. The numbers your pages should show
 
 Sanity-check against these. If a visual disagrees, the visual is wrong.
@@ -759,22 +735,20 @@ Sanity-check against these. If a visual disagrees, the visual is wrong.
 | Rows in `fact_grid_hourly` | 139,055, of which 6,961 are stress hours |
 | Pooled MAPE, stress vs normal | 3.88% vs 3.93% |
 | Only region that measurably degrades | **NYIS, +0.82 pp [+0.44, +1.19], 1.31x** |
-| Regions that measurably improve | ISNE −1.73 pp (0.40x), PJM −0.30 pp |
-| SWPP (looks bad, is not) | +0.42 pp **[−0.98, +1.93]** |
+| Regions that measurably improve | ISNE -1.73 pp (0.40x), PJM -0.30 pp |
+| SWPP (looks bad, is not) | +0.42 pp **[-0.98, +1.93]** |
 | Skill vs persistence | +26.1% normal, +31.9% stress |
-| Negative skill | CISO (−73.3% normal) and SWPP (−77.2% normal) |
-| CISO MAPE, all vs balance-clean hours | 8.36% → 6.95% |
-| CISO penalty, all vs clean | +0.15 pp → **−1.67 pp** |
+| Negative skill | CISO (-73.3% normal) and SWPP (-77.2% normal) |
+| CISO MAPE, all vs balance-clean hours | 8.36% > 6.95% |
+| CISO penalty, all vs clean | +0.15 pp > **-1.67 pp** |
 | CISO hours failing the balance check | 6,396 of the 17,304 it can be run on |
 | Largest ramp-lens penalty | SOCO +1.85 pp, but [+0.38, +4.56] |
 | The one the interval pins down | PJM +1.78 pp [+1.52, +2.04] |
-| Largest one-directional bias | CISO −6.95 pp, SWPP +6.14 pp |
+| Largest one-directional bias | CISO -6.95 pp, SWPP +6.14 pp |
 | Regions missing one way in >65% of hours | 7 of 8; only ERCOT is near even |
 | PJM, week of 20 Jun 2025 | peak 160,560 MW, 4.51% MAPE, worst hour 13.7% |
 | Stress-hour shortfall, upper bound at $100/MWh | $733.9M over 24 months |
 | The same at the $40 and $200 ends of the band | $293.6M and $1,467.8M |
-
----
 
 ## 11. Saving, and why there is no .pbix
 
@@ -790,13 +764,11 @@ excludes `*.pbix` for that reason.
 For screenshots, **File > Export > Export to PDF** and crop, or the Snipping
 Tool (Win+Shift+S), into `docs\screenshots\`.
 
----
-
 ## 12. When it goes wrong
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| Stress measures return blank | `is_stress_hour` imported as Text | Power Query → change to True/False → Close & Apply |
+| Stress measures return blank | `is_stress_hour` imported as Text | Power Query > change to True/False > Close & Apply |
 | Relationship refuses to create | Type mismatch on the key | Both `ba_code` must be Text, both `date_key` must be Date |
 | Numbers look doubled or wrong after slicing | A relationship is set to "Both" | Double-click the line, set Cross filter to Single |
 | Parquet connector errors | Older Power BI build | Update via Microsoft Store, or use the `make csv` fallback |
@@ -804,8 +776,6 @@ Tool (Win+Shift+S), into `docs\screenshots\`.
 | Peak demand appears at 3am | Timezone converted backwards | Not possible here: the warehouse already did this correctly. Daily peaks land at hours 17-19 local in every region, and CISO net load bottoms out at 14:00 and peaks at 21:00, which is the duck curve. If you see 3am you are charting `ts_utc` instead of `ts_local` |
 | A slicer shows the right dates but filters nothing | A default selection saved on a slicer does not always apply on open | Set the range as a page filter in the Filters pane instead. Page 4 does it that way |
 | Everything is slow | 1.2M-row fuel table | Normal. Avoid putting `fact_fuel_hourly` on a page without a filter |
-
----
 
 ## What "done" looks like
 
