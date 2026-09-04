@@ -2,13 +2,14 @@
 >
 > It walks through building this project from scratch on a Windows machine,
 > and it was written before the code existed. It is not the reference for the
-> current repo: the code in `src/` is the reference, and it has since diverged
-> from this tutorial in several places (the analysis now adds naive baselines,
-> bootstrap confidence intervals, a second ramp-based stress definition, and a
-> Plotly dashboard in place of Power BI). Read it for the reasoning and the
-> click-by-click Power BI and Excel steps, not for the current numbers.
+> current repo: the code in `src/` is the reference, and it has diverged from
+> this tutorial in several places. The project now also has naive baseline
+> forecasts, bootstrap confidence intervals, a second ramp-based stress
+> definition, an HTML dashboard, and a rebuilt Power BI report. Read this
+> for the reasoning and the click-by-click Power BI and Excel steps, not
+> for the current numbers.
 
-# GRID STRESS DASHBOARD
+# United States Energy Grid Stress Analysis
 ## Complete Build Guide
 
 **Author:** Jose Aleman
@@ -16,11 +17,6 @@
 **Data source:** U.S. Energy Information Administration, Form EIA-930, via EIA API v2
 **Target build time:** 8 to 10 focused hours, plus a second sitting for the memo
 **Guide revision:** 6, Windows-only, expanded click-by-click Excel and Power BI instructions, sourced cost figures, GitHub save-and-resume workflow in Parts 2.3 and 2.4
-
-> If you have more than one copy of this file in your Downloads folder, delete
-> the older ones and keep only the most recent. If any command you are looking
-> at references `C:\path\to\...` as something to edit, or has you creating the
-> project folder more than once, you are on an outdated copy.
 
 ---
 
