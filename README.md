@@ -226,6 +226,14 @@ generation breakdown by fuel.
 
 `make help` lists each step. `make test` runs the suite.
 
+Prefer to build it yourself end to end, by hand, rather than run the scripts?
+[`docs/TUTORIAL_FROM_SCRATCH.md`](docs/TUTORIAL_FROM_SCRATCH.md) is the
+original build guide: every pull, validation rule, SQL table and Excel
+formula, click by click, written before the code existed. It predates the
+bootstrap intervals, the ramp-stress lens and the current Power BI project, so
+treat the numbers in it as illustrative and the code in `src/` as the source
+of truth. Read it for the reasoning behind each step.
+
 ---
 
 ## The Power BI report
@@ -335,7 +343,7 @@ turned up in earlier drafts, is in
 | `data/processed/` | The star schema as parquet, ready for any BI tool |
 | `powerbi/` | The Power BI project, and the HTML dashboard |
 | `reports/` | Memo, data-quality report, audit, bootstrap intervals, assumptions register |
-| `docs/` | Power BI guide, the original build tutorial, chart images |
+| `docs/` | [`POWERBI_WINDOWS_GUIDE.md`](docs/POWERBI_WINDOWS_GUIDE.md), [`TUTORIAL_FROM_SCRATCH.md`](docs/TUTORIAL_FROM_SCRATCH.md), chart images |
 | `tests/` | Pytest suite over the validation rules and the warehouse SQL |
 
 ---
