@@ -47,7 +47,7 @@
                 "horizontalTextAlignment": "left",
                 "textRuns": [
                   {
-                    "value": "Source: U.S. Energy Information Administration, Form EIA-930, API v2. Pulled 2 September 2026. Code and data: github.com/josealemanm/grid-stress-dashboard",
+                    "value": "Source: U.S. Energy Information Administration, Form EIA-930, API v2. Pulled 2 September 2026. Code and data: github.com/josealemanm/united-states-energy-stress-grid-analysis",
                     "textStyle": {
                       "fontSize": "8.5pt",
                       "fontFamily": "Segoe UI",
