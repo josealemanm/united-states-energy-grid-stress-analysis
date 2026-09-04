@@ -582,7 +582,7 @@ p6 += [
              "that are too tight.", PT_BODY, INK),
         para("Source: U.S. Energy Information Administration, Form EIA-930, API v2. "
              "Pulled 2 September 2026. Code and data: "
-             "github.com/josealemanm/united-states-energy-stress-grid-analysis", 8.5, SLATE),
+             "github.com/josealemanm/united-states-energy-grid-stress-analysis", 8.5, SLATE),
     ], z=14),
 ]
 pages.append(("methodology", "6 Methodology", p6, None))

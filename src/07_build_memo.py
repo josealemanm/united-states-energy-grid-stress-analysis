@@ -273,7 +273,7 @@ def main():
         Paragraph("SOURCE", head_style),
         Paragraph(
             f"U.S. EIA, Form EIA-930, API v2. Pulled {pulled_at[:10]}. "
-            f"Code: github.com/josealemanm/united-states-energy-stress-grid-analysis",
+            f"Code: github.com/josealemanm/united-states-energy-grid-stress-analysis",
             body_style,
         ),
     ]

@@ -1,10 +1,10 @@
-# United States Energy Stress Grid Analysis
+# United States Energy Grid Stress Analysis
 
 **Does the U.S. power grid forecast demand worst on the hours when being wrong
 costs the most?** Two years of hourly data across eight regional grid operators
 say mostly no, with one real exception and a couple of surprises underneath.
 
-**[Open the live, interactive dashboard →](https://josealemanm.github.io/united-states-energy-stress-grid-analysis/powerbi/dashboard.html)**
+**[Open the live, interactive dashboard →](https://josealemanm.github.io/united-states-energy-grid-stress-analysis/powerbi/dashboard.html)**
 No installation needed — it runs in the browser. The full Power BI project with
 slicers and cross-filtering is also in the repo; see
 [The Power BI report](#the-power-bi-report) below.
@@ -264,8 +264,8 @@ the pages from both.
 ## Running it yourself
 
 ```bash
-git clone https://github.com/josealemanm/united-states-energy-stress-grid-analysis.git
-cd united-states-energy-stress-grid-analysis
+git clone https://github.com/josealemanm/united-states-energy-grid-stress-analysis.git
+cd united-states-energy-grid-stress-analysis
 python3 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt

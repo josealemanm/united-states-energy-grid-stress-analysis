@@ -44,13 +44,13 @@ Skip this if you already opened `powerbi/grid_stress.pbip`.
 2. **Get the project.** In PowerShell:
 
    ```powershell
-   gh repo clone josealemanm/united-states-energy-stress-grid-analysis
+   gh repo clone josealemanm/united-states-energy-grid-stress-analysis
    ```
 
    Then:
 
    ```powershell
-   cd united-states-energy-stress-grid-analysis
+   cd united-states-energy-grid-stress-analysis
    ```
 
    Then:
@@ -127,7 +127,7 @@ COLUMN_WEIGHTS = {
 Then rebuild and reopen:
 
 ```powershell
-cd ~/united-states-energy-stress-grid-analysis; .venv\Scripts\python.exe src/08_build_powerbi_report.py
+cd ~/united-states-energy-grid-stress-analysis; .venv\Scripts\python.exe src/08_build_powerbi_report.py
 ```
 
 Colors and font sizes live in `src/powerbi_theme.py`, in one palette block at
