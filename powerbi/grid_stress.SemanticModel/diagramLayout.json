@@ -1,0 +1,152 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1255.777526303033,
+            "y": 390.10054229179309
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "1b808316-49a1-537d-920d-478c575dc444",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1021.7775263030328,
+            "y": 431.50681771928754
+          },
+          "nodeIndex": "analysis_ramp_stress_penalty",
+          "nodeLineageTag": "4576d5c6-b58d-53ce-9f50-5dc80c87e820",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 734.76441610943107,
+            "y": 730.20108458358618
+          },
+          "nodeIndex": "analysis_stress_penalty",
+          "nodeLineageTag": "39d54536-4254-5610-86c0-151090589bc1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 841.26910633782586,
+            "y": 178.71988785385213
+          },
+          "nodeIndex": "bootstrap_intervals",
+          "nodeLineageTag": "c78301c5-b0e9-521b-8890-7899b8e13789",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 624.09043668620734,
+            "y": 431.53218427386378
+          },
+          "nodeIndex": "dim_ba",
+          "nodeLineageTag": "fa7bfb67-cc85-5b1e-a5a5-ef2a5ddd2f09",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 480.21169967078424
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "ea84e5ff-7322-54db-bcfc-d119f79be8c6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 144.91430022491477,
+            "y": -50
+          },
+          "nodeIndex": "dim_fuel",
+          "nodeLineageTag": "66ab59bf-d887-5461-bf09-cbfe827ecccf",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 336.99458876520225,
+            "y": 226.94298834473921
+          },
+          "nodeIndex": "fact_fuel_hourly",
+          "nodeLineageTag": "c84b44ed-5ffb-56f6-8782-80922d5e3b97",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 337.01154538440778,
+            "y": 676.70209780474238
+          },
+          "nodeIndex": "fact_grid_hourly",
+          "nodeLineageTag": "f42cf291-e377-58f7-98d8-f0f45ed24ff0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1539.777526303033,
+            "y": 428.10054229179309
+          },
+          "nodeIndex": "Price per MWh",
+          "nodeLineageTag": "16875768-f132-5f65-bb99-8f30c70c5033",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

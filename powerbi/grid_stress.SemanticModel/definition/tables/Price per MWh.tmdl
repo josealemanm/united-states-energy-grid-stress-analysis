@@ -1,0 +1,24 @@
+/// Real-time energy price used to put a dollar figure on the stress-hour
+/// shortfall. 40, 100 and 200 are the low, central and high values from the
+/// Excel assumptions register. It is a slider rather than a constant so a
+/// reader can watch the dollar figure move and see it is an assumption.
+table 'Price per MWh'
+	lineageTag: 16875768-f132-5f65-bb99-8f30c70c5033
+
+	measure 'Price per MWh Value' = SELECTEDVALUE ( 'Price per MWh'[Price per MWh], 100 )
+		formatString: \$#,0
+		lineageTag: 7fdcc621-ddae-5f40-861f-3321b015cbee
+
+	column 'Price per MWh'
+		dataType: int64
+		formatString: \$#,0
+		lineageTag: 4c2d501f-7ad9-5b16-8f74-ad681b86e6b2
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Price per MWh' = calculated
+		mode: import
+		source = GENERATESERIES(40, 200, 10)
+

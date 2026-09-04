@@ -1,0 +1,64 @@
+/// Fuel types. is_dispatchable is the column that matters: solar and wind
+/// cannot be dispatched up, which is the whole reason net-load ramp is a
+/// separate kind of stress.
+table dim_fuel
+	lineageTag: 66ab59bf-d887-5461-bf09-cbfe827ecccf
+
+	column fuel_code
+		dataType: string
+		lineageTag: ac645180-cef6-5910-a502-96f81c328ee7
+		summarizeBy: none
+		sourceColumn: fuel_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_name
+		dataType: string
+		lineageTag: 4c80bfde-27b7-516b-a893-e40c2ab494ad
+		summarizeBy: none
+		sourceColumn: fuel_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_group
+		dataType: string
+		lineageTag: f1537ab4-42b3-5d60-a67f-c4cba215678f
+		summarizeBy: none
+		sourceColumn: fuel_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_renewable
+		dataType: boolean
+		lineageTag: 15b6f174-b757-5fc1-a36c-68a0eded009b
+		summarizeBy: none
+		sourceColumn: is_renewable
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_dispatchable
+		dataType: boolean
+		lineageTag: a9de214b-c893-59de-88f9-2bc25fb283f2
+		summarizeBy: none
+		sourceColumn: is_dispatchable
+
+		annotation SummarizationSetBy = Automatic
+
+	column sort_order
+		dataType: int64
+		lineageTag: d8bbfe3a-8de1-5457-9f54-cf040f1a1365
+		summarizeBy: none
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_fuel = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(RepoRoot & "\data\processed\dim_fuel.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

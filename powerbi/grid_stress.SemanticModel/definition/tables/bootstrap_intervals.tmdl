@@ -1,0 +1,58 @@
+/// 95% block-bootstrap intervals, resampled by calendar day. This is the table
+/// that keeps the report honest: without it every chart shows point estimates,
+/// and on this data the point estimates put the wrong region first.
+table bootstrap_intervals
+	lineageTag: c78301c5-b0e9-521b-8890-7899b8e13789
+
+	column ba_code
+		dataType: string
+		lineageTag: 42abea17-86ea-5bf6-bfb5-10582a9e3467
+		summarizeBy: none
+		sourceColumn: ba_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric
+		dataType: string
+		lineageTag: 1e9abe72-3975-5f8e-828c-56f45f78aa50
+		summarizeBy: none
+		sourceColumn: metric
+
+		annotation SummarizationSetBy = Automatic
+
+	column lo
+		dataType: double
+		lineageTag: 73271b76-7384-5051-a0ac-2b0af4ebe1a1
+		summarizeBy: sum
+		sourceColumn: lo
+
+		annotation SummarizationSetBy = Automatic
+
+	column mid
+		dataType: double
+		lineageTag: 1af41b7c-3ee4-5382-b368-cd51e11be33e
+		summarizeBy: sum
+		sourceColumn: mid
+
+		annotation SummarizationSetBy = Automatic
+
+	column hi
+		dataType: double
+		lineageTag: 39782185-5e5b-5431-8d98-3fc40799547f
+		summarizeBy: sum
+		sourceColumn: hi
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bootstrap_intervals = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(RepoRoot & "\reports\bootstrap_intervals.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"ba_code", type text}, {"metric", type text}, {"lo", type number}, {"mid", type number}, {"hi", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

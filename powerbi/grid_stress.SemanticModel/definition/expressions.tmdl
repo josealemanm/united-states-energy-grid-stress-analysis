@@ -1,0 +1,11 @@
+/// Absolute path to your clone of the repository. This is the only thing
+/// that has to change after cloning: Home > Transform data > Manage
+/// parameters, or edit this file. Every table builds its path from it,
+/// so nothing else in the model is machine specific.
+expression RepoRoot = "C:\Users\jalem\grid-stress-dashboard" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 536830ca-c477-50b5-ae2f-ab19f1949d6c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

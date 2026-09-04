@@ -1,0 +1,99 @@
+/// Calendar, built from the fact table so it covers exactly the loaded span. It
+/// is the marked date table, which is why Power BI's own auto date/time is
+/// switched off in model.tmdl.
+table dim_date
+	lineageTag: ea84e5ff-7322-54db-bcfc-d119f79be8c6
+	dataCategory: Time
+
+	column date_key
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd hh:nn:ss
+		lineageTag: 8a7a357e-7b16-5f09-b566-0ffbd7730450
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		lineageTag: 3abd31af-8f72-56fc-b3f3-1f4d57d38a70
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_num
+		dataType: int64
+		lineageTag: 14c273c0-f258-5b63-8451-1027683a98cb
+		summarizeBy: none
+		sourceColumn: month_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 94a38042-ae37-5dd2-8e4c-36a6114f7dae
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: fcf7846c-d614-55ff-97c5-0c0029cb6296
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		lineageTag: 243e9b6a-86d6-503c-9151-ae241263cf2c
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week_num
+		dataType: int64
+		lineageTag: 59950760-708e-56c0-8832-35595850faa9
+		summarizeBy: none
+		sourceColumn: day_of_week_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: f3744177-b1ab-561d-a470-9b5cfd7af031
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		lineageTag: f0793a38-9d6b-5ae6-9352-528572a1258b
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: 02f97cdb-fd64-53c9-aceb-00987b54e015
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(RepoRoot & "\data\processed\dim_date.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

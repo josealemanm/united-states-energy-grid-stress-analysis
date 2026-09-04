@@ -1,0 +1,66 @@
+/// Generation by fuel: one row per balancing authority per hour per fuel. 1.2
+/// million rows, so keep it behind a filter.
+table fact_fuel_hourly
+	lineageTag: c84b44ed-5ffb-56f6-8782-80922d5e3b97
+
+	column ba_code
+		dataType: string
+		lineageTag: 42abea17-86ea-5bf6-bfb5-10582a9e3467
+		summarizeBy: none
+		sourceColumn: ba_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts_utc
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn:ss
+		lineageTag: fa23f7e4-a288-584c-8d99-b5a84d6150ad
+		summarizeBy: none
+		sourceColumn: ts_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts_local
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn:ss
+		lineageTag: 815c0949-b36b-5a99-8bbc-440255c4a5f3
+		summarizeBy: none
+		sourceColumn: ts_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn:ss
+		lineageTag: 8a7a357e-7b16-5f09-b566-0ffbd7730450
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_code
+		dataType: string
+		lineageTag: ac645180-cef6-5910-a502-96f81c328ee7
+		summarizeBy: none
+		sourceColumn: fuel_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column generation_mw
+		dataType: double
+		lineageTag: a23792cd-a2ab-53fb-852a-76611ad3b2de
+		summarizeBy: sum
+		sourceColumn: generation_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_fuel_hourly = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(RepoRoot & "\data\processed\fact_fuel_hourly.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

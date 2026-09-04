@@ -1,0 +1,300 @@
+/// One row per balancing authority per hour: demand, day-ahead forecast, the
+/// derived error columns, and both stress flags.
+table fact_grid_hourly
+	lineageTag: f42cf291-e377-58f7-98d8-f0f45ed24ff0
+
+	column ba_code
+		dataType: string
+		lineageTag: 42abea17-86ea-5bf6-bfb5-10582a9e3467
+		summarizeBy: none
+		sourceColumn: ba_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts_utc
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn:ss
+		lineageTag: fa23f7e4-a288-584c-8d99-b5a84d6150ad
+		summarizeBy: none
+		sourceColumn: ts_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts_local
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn:ss
+		lineageTag: 815c0949-b36b-5a99-8bbc-440255c4a5f3
+		summarizeBy: none
+		sourceColumn: ts_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn:ss
+		lineageTag: 8a7a357e-7b16-5f09-b566-0ffbd7730450
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column hour_local
+		dataType: int64
+		lineageTag: 2ae2b5b5-1683-564b-8aeb-7e12592fe358
+		summarizeBy: none
+		sourceColumn: hour_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: 02f97cdb-fd64-53c9-aceb-00987b54e015
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column demand_mw
+		dataType: double
+		lineageTag: b9fb59e8-59f0-597a-8781-e4bbbe59d7ee
+		summarizeBy: sum
+		sourceColumn: demand_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column forecast_mw
+		dataType: double
+		lineageTag: 0083267d-7a2b-5aec-ace9-839d2c82d744
+		summarizeBy: sum
+		sourceColumn: forecast_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column net_gen_mw
+		dataType: double
+		lineageTag: 7702e5f7-7d72-50ae-9a16-99d65f9c7787
+		summarizeBy: sum
+		sourceColumn: net_gen_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column interchange_mw
+		dataType: double
+		lineageTag: cf2342fa-f9d7-5fe3-bc8f-554b14f9d7a2
+		summarizeBy: sum
+		sourceColumn: interchange_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column naive_persistence_mw
+		dataType: double
+		lineageTag: 07e34114-48a4-5f30-91b7-30582f1c6200
+		summarizeBy: sum
+		sourceColumn: naive_persistence_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column naive_seasonal_mw
+		dataType: double
+		lineageTag: 8fb7f502-9570-54b4-824d-e2ae77aadc2c
+		summarizeBy: sum
+		sourceColumn: naive_seasonal_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column net_import_mw
+		dataType: double
+		lineageTag: d3a3e247-a9d8-58c9-917c-ea55bb022565
+		summarizeBy: sum
+		sourceColumn: net_import_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column forecast_error_mw
+		dataType: double
+		lineageTag: 550e8fcf-5ce3-5740-b0ef-850295ed34f9
+		summarizeBy: sum
+		sourceColumn: forecast_error_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column abs_error_mw
+		dataType: double
+		lineageTag: d523d0e6-073c-5f0a-a590-9795f991450b
+		summarizeBy: sum
+		sourceColumn: abs_error_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_error
+		dataType: double
+		lineageTag: 2a535829-fa35-52d0-b6ea-cb75bf7f9bf9
+		summarizeBy: sum
+		sourceColumn: pct_error
+
+		annotation SummarizationSetBy = Automatic
+
+	column abs_pct_error
+		dataType: double
+		lineageTag: 7d7549be-f66c-5b40-8ae3-81065b0e32d6
+		summarizeBy: sum
+		sourceColumn: abs_pct_error
+
+		annotation SummarizationSetBy = Automatic
+
+	column abs_pct_error_persistence
+		dataType: double
+		lineageTag: 1e276bc3-89c3-5892-b0ca-3966bcd3d6fd
+		summarizeBy: sum
+		sourceColumn: abs_pct_error_persistence
+
+		annotation SummarizationSetBy = Automatic
+
+	column abs_pct_error_seasonal
+		dataType: double
+		lineageTag: 90b2fa14-d23d-5ef3-b606-3d038519408c
+		summarizeBy: sum
+		sourceColumn: abs_pct_error_seasonal
+
+		annotation SummarizationSetBy = Automatic
+
+	column shortfall_mw
+		dataType: double
+		lineageTag: b2eb8534-ffb9-5487-b501-52c504659a88
+		summarizeBy: sum
+		sourceColumn: shortfall_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column demand_pctile
+		dataType: double
+		lineageTag: 1e5f3351-6249-50d2-a330-b3fb07b64111
+		summarizeBy: sum
+		sourceColumn: demand_pctile
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_stress_hour
+		dataType: boolean
+		lineageTag: 6ecf06a6-cc49-5079-99a0-cbf3afa12235
+		summarizeBy: none
+		sourceColumn: is_stress_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_extreme_hour
+		dataType: boolean
+		lineageTag: beb265a0-792a-5223-9087-2ed5e156414b
+		summarizeBy: none
+		sourceColumn: is_extreme_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column ramp_1h_mw
+		dataType: double
+		lineageTag: e7999cfa-b9b3-5e59-bc4f-204df495a1aa
+		summarizeBy: sum
+		sourceColumn: ramp_1h_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column demand_ma24_mw
+		dataType: double
+		lineageTag: 64d18649-2332-5b81-a655-b14c1b607a3a
+		summarizeBy: sum
+		sourceColumn: demand_ma24_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column imbalance_mw
+		dataType: double
+		lineageTag: ee943c0d-3b72-5474-b11d-4c02be79756c
+		summarizeBy: sum
+		sourceColumn: imbalance_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column imbalance_pct
+		dataType: double
+		lineageTag: 1ee46d1e-177c-5e06-b16d-484a7c9c0d3c
+		summarizeBy: sum
+		sourceColumn: imbalance_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_balance_clean
+		dataType: boolean
+		lineageTag: 8b364b68-6e46-5120-8116-ecd87defee7d
+		summarizeBy: none
+		sourceColumn: is_balance_clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column solar_mw
+		dataType: double
+		lineageTag: 893dab4d-1a8d-5c43-9e77-43cec84e278e
+		summarizeBy: sum
+		sourceColumn: solar_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column wind_mw
+		dataType: double
+		lineageTag: bcdfb807-7810-5cc2-81d9-3a7ac98dbd52
+		summarizeBy: sum
+		sourceColumn: wind_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column net_load_mw
+		dataType: double
+		lineageTag: da1d6303-7221-5a04-afec-4173b2d45e1a
+		summarizeBy: sum
+		sourceColumn: net_load_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column vre_share_pct
+		dataType: double
+		lineageTag: 8c8d2fa5-37e7-51b9-9665-610782cfe44b
+		summarizeBy: sum
+		sourceColumn: vre_share_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column net_load_ramp_1h_mw
+		dataType: double
+		lineageTag: b93dce23-a99b-5db5-8314-084c88b7571c
+		summarizeBy: sum
+		sourceColumn: net_load_ramp_1h_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_ramp_stress_hour
+		dataType: boolean
+		lineageTag: 90023aca-02cc-5a44-9a39-f3c46e3cd311
+		summarizeBy: none
+		sourceColumn: is_ramp_stress_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Signed error rounded to the nearest whole percentage point. It exists so
+	/// the error histogram has one-point buckets instead of 139,055 distinct
+	/// values, which is the only way that chart is readable.
+	column pct_error_bin = ROUND ( fact_grid_hourly[pct_error], 0 )
+		dataType: double
+		lineageTag: 9eedc97b-093f-5f18-a647-3ff1d1f4f62c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_grid_hourly = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(RepoRoot & "\data\processed\fact_grid_hourly.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

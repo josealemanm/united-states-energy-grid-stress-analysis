@@ -1,0 +1,17 @@
+# Direct dependencies, pinned to a major version so a future release cannot
+# silently change results. requirements.lock.txt has the exact versions this
+# analysis was produced with.
+requests>=2.31,<3
+pandas>=2.2,<3
+numpy>=2.0,<3
+pyarrow>=15,<22
+duckdb>=1.4,<2
+python-dotenv>=1.0,<2
+tqdm>=4.66,<5
+tabulate>=0.9,<1
+openpyxl>=3.1,<4
+plotly>=5.20,<8
+kaleido>=1.0,<2
+reportlab>=4,<6
+pypdf>=4,<7
+pytest>=8,<9

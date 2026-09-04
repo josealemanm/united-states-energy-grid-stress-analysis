@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+
+annotation PBI_QueryOrder = ["RepoRoot", "dim_ba", "dim_fuel", "dim_date", "fact_grid_hourly", "fact_fuel_hourly", "analysis_stress_penalty", "analysis_ramp_stress_penalty", "bootstrap_intervals"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table _Measures
+ref table analysis_ramp_stress_penalty
+ref table analysis_stress_penalty
+ref table bootstrap_intervals
+ref table dim_ba
+ref table dim_date
+ref table dim_fuel
+ref table fact_fuel_hourly
+ref table fact_grid_hourly
+ref table 'Price per MWh'
+
+ref cultureInfo en-US
+

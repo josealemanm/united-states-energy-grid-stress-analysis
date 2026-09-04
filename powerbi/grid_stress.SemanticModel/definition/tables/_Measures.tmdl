@@ -1,0 +1,231 @@
+/// Every measure lives here. The leading underscore sorts it to the top of
+/// the Data pane, and keeping measures off the fact tables means the field
+/// list reads as "here are the numbers" instead of "here are 34 columns".
+table _Measures
+	lineageTag: 1b808316-49a1-537d-920d-478c575dc444
+
+	/// Balancing-authority-hours in the current filter context.
+	measure 'Hours Analyzed' = COUNTROWS ( fact_grid_hourly )
+		formatString: #,0
+		lineageTag: 68153b15-2998-59ca-aec0-f19ca8fb5df3
+
+	measure 'Avg Demand (MW)' = AVERAGE ( fact_grid_hourly[demand_mw] )
+		formatString: #,0
+		lineageTag: fb9244ef-fafe-54b6-8baa-2d3fb63e468a
+
+	measure 'Peak Demand (MW)' = MAX ( fact_grid_hourly[demand_mw] )
+		formatString: #,0
+		lineageTag: 0b6eeeea-af97-5ad3-86af-bae2be99efdc
+
+	/// Mean absolute percentage error of the EIA day-ahead demand forecast. The
+	/// column is already in percentage points, so no multiplying by 100 here.
+	measure 'MAPE (%)' = AVERAGE ( fact_grid_hourly[abs_pct_error] )
+		formatString: 0.00
+		lineageTag: cc019a79-5728-5e79-ab8a-becdedf51584
+
+	measure 'MAPE Normal (%)' = CALCULATE ( [MAPE (%)], fact_grid_hourly[is_stress_hour] = FALSE() )
+		formatString: 0.00
+		lineageTag: 53625e48-6e84-52ff-ae8c-4c4fa0cb9c3e
+
+	/// A stress hour is the top 5% of demand within a balancing authority and
+	/// season.
+	measure 'MAPE Stress (%)' = CALCULATE ( [MAPE (%)], fact_grid_hourly[is_stress_hour] = TRUE() )
+		formatString: 0.00
+		lineageTag: 5ddba9b8-bff6-5c3f-86e5-f0eeb0fbc7dd
+
+	/// Percentage points of extra error at stress hours. Read it next to Penalty
+	/// With Interval, never on its own.
+	measure 'Stress Penalty (pp)' = [MAPE Stress (%)] - [MAPE Normal (%)]
+		formatString: +0.00;-0.00;0.00
+		lineageTag: add8cf08-68b8-5021-b348-2f288f5b5f4c
+
+	measure 'Stress Multiple' = DIVIDE ( [MAPE Stress (%)], [MAPE Normal (%)] )
+		formatString: 0.00
+		lineageTag: 58287d4a-d2f7-583b-8f17-ac5ca1b0a20e
+
+	/// Signed error rather than absolute. Positive means the forecast runs high.
+	measure 'Forecast Bias (%)' = AVERAGE ( fact_grid_hourly[pct_error] )
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 8848043c-60c2-595b-8124-930759311aba
+
+	/// Lower bound of the 95% day-block bootstrap interval. Blank unless a single
+	/// region is in context: the intervals are per region and adding eight of
+	/// them together would mean nothing.
+	measure 'Penalty Low' =
+			IF (
+			    HASONEVALUE ( dim_ba[ba_code] ),
+			    CALCULATE ( SUM ( bootstrap_intervals[lo] ), bootstrap_intervals[metric] = "stress_penalty_pp" )
+			)
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 995348af-7c08-5f3d-8b84-bda6fb3e8ff9
+
+	measure 'Penalty High' =
+			IF (
+			    HASONEVALUE ( dim_ba[ba_code] ),
+			    CALCULATE ( SUM ( bootstrap_intervals[hi] ), bootstrap_intervals[metric] = "stress_penalty_pp" )
+			)
+		formatString: +0.00;-0.00;0.00
+		lineageTag: ab457dbc-4c83-5326-99d5-d12218a8dd1a
+
+	/// Whether the 95% interval clears zero.
+	measure 'Is Significant' =
+			VAR Lo = [Penalty Low]
+			VAR Hi = [Penalty High]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( Lo ),
+			        IF ( Lo > 0 || Hi < 0, "Real effect", "Not distinguishable from zero" )
+			    )
+		lineageTag: 0912b246-337d-5e1e-a24a-b1ad13cee6cf
+
+	/// The point estimate and its interval in one string, so a reader never sees
+	/// a point estimate naked.
+	measure 'Penalty With Interval' =
+			VAR Pt = [Stress Penalty (pp)]
+			VAR Lo = [Penalty Low]
+			VAR Hi = [Penalty High]
+			RETURN
+			    IF (
+			        ISBLANK ( Lo ),
+			        FORMAT ( Pt, "+0.00;-0.00" ) & " pp (pooled)",
+			        FORMAT ( Pt, "+0.00;-0.00" ) & " pp [" & FORMAT ( Lo, "+0.00;-0.00" ) & ", "
+			            & FORMAT ( Hi, "+0.00;-0.00" ) & "]"
+			    )
+		lineageTag: 679cd736-4aa9-5b8b-82b6-cb4f12af3f5f
+
+	/// Share of hours where the forecast came in above actual demand. At 50% the
+	/// misses are symmetric. Well away from 50% means the region misses in one
+	/// direction nearly all the time, which is a different problem from a noisy
+	/// forecast and has a different fix.
+	measure 'Hours Forecast Ran High (%)' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( fact_grid_hourly ), fact_grid_hourly[pct_error] > 0 ),
+			    COUNTROWS ( fact_grid_hourly )
+			)
+		formatString: 0.0%
+		lineageTag: 472ff061-f90e-5c40-80a1-e9f55d8fa87c
+
+	/// How much of the average absolute error is one-directional. Near zero means
+	/// the misses cancel and the error is noise. Near 100% means almost every
+	/// miss goes the same way, so the forecast is not noisy, it is calibrated
+	/// wrong.
+	measure 'Bias Share of Error' = DIVIDE ( ABS ( [Forecast Bias (%)] ), [MAPE (%)] )
+		formatString: 0.0%
+		lineageTag: 24451427-fd71-5d0b-89cf-1c77f250f5be
+
+	/// Error of the naive baseline: yesterday's demand at the same hour.
+	measure 'MAPE Persistence (%)' = AVERAGE ( fact_grid_hourly[abs_pct_error_persistence] )
+		formatString: 0.00
+		lineageTag: 7cc1adf3-38f1-5b8d-8251-7ad439e8faa9
+
+	/// How much of the naive baseline's error the day-ahead forecast removes.
+	/// Below zero means it loses to reusing yesterday.
+	measure 'Skill vs Persistence' = 1 - DIVIDE ( [MAPE (%)], [MAPE Persistence (%)] )
+		formatString: 0.0%
+		lineageTag: 8bf7457f-02d3-51cd-b471-21e383e48bfe
+
+	measure 'Skill Normal' = CALCULATE ( [Skill vs Persistence], fact_grid_hourly[is_stress_hour] = FALSE() )
+		formatString: 0.0%
+		lineageTag: bb7e9e20-18cc-5f86-a565-7ffa522b660b
+
+	measure 'Skill Stress' = CALCULATE ( [Skill vs Persistence], fact_grid_hourly[is_stress_hour] = TRUE() )
+		formatString: 0.0%
+		lineageTag: 9c947b42-d0c7-509b-bd5b-838c1bb4077a
+
+	/// AVERAGEX iterates row by row so ABS applies before averaging. A plain
+	/// AVERAGE would let positive and negative imbalances cancel and report a
+	/// misleadingly clean number.
+	measure 'Avg Abs Imbalance (%)' = AVERAGEX ( fact_grid_hourly, ABS ( fact_grid_hourly[imbalance_pct] ) )
+		formatString: 0.00
+		lineageTag: a2c51f8d-2d8a-5d88-bfe2-5c8974f8ddb2
+
+	/// Hours where net generation minus interchange misses demand by more than
+	/// 5%. Hours with no interchange reported are blank rather than failures, so
+	/// they are not counted here.
+	measure 'Hours Failing Balance Check' = CALCULATE ( COUNTROWS ( fact_grid_hourly ), fact_grid_hourly[is_balance_clean] = FALSE() )
+		formatString: #,0
+		lineageTag: 911d6be2-aa31-57ee-986c-388701201b7d
+
+	measure 'MAPE Clean (%)' = CALCULATE ( [MAPE (%)], fact_grid_hourly[is_balance_clean] = TRUE() )
+		formatString: 0.00
+		lineageTag: 763cee15-7f43-52ac-a946-ab1aa6ee53d4
+
+	measure 'MAPE Ramp Stress (%)' = CALCULATE ( [MAPE (%)], fact_grid_hourly[is_ramp_stress_hour] = TRUE() )
+		formatString: 0.00
+		lineageTag: 56807e41-77a2-5cc7-85f6-abbebad1efe8
+
+	measure 'MAPE Ramp Normal (%)' = CALCULATE ( [MAPE (%)], fact_grid_hourly[is_ramp_stress_hour] = FALSE() )
+		formatString: 0.00
+		lineageTag: 66d6f37e-fdc6-515c-8de8-a66a50b25b71
+
+	measure 'Ramp Stress Penalty (pp)' = [MAPE Ramp Stress (%)] - [MAPE Ramp Normal (%)]
+		formatString: +0.00;-0.00;0.00
+		lineageTag: b5adbead-123c-5a9b-bb64-6eed7e4888fd
+
+	measure 'Ramp Penalty Low' =
+			IF (
+			    HASONEVALUE ( dim_ba[ba_code] ),
+			    CALCULATE ( SUM ( bootstrap_intervals[lo] ), bootstrap_intervals[metric] = "ramp_stress_penalty_pp" )
+			)
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 4beccbcb-d60e-5ae7-94b6-cdad9c54f869
+
+	measure 'Ramp Penalty High' =
+			IF (
+			    HASONEVALUE ( dim_ba[ba_code] ),
+			    CALCULATE ( SUM ( bootstrap_intervals[hi] ), bootstrap_intervals[metric] = "ramp_stress_penalty_pp" )
+			)
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 33614ec3-4993-5ff0-a00a-f9cece2f4aa5
+
+	measure 'Ramp Penalty With Interval' =
+			VAR Pt = [Ramp Stress Penalty (pp)]
+			VAR Lo = [Ramp Penalty Low]
+			VAR Hi = [Ramp Penalty High]
+			RETURN
+			    IF (
+			        ISBLANK ( Lo ),
+			        FORMAT ( Pt, "+0.00;-0.00" ) & " pp (pooled)",
+			        FORMAT ( Pt, "+0.00;-0.00" ) & " pp [" & FORMAT ( Lo, "+0.00;-0.00" ) & ", "
+			            & FORMAT ( Hi, "+0.00;-0.00" ) & "]"
+			    )
+		lineageTag: f3b02cd1-eb23-5222-b8d3-7d544084afd6
+
+	/// Megawatt-hours by which the forecast came in under actual demand. One MW
+	/// held for one hour is one MWh, so summing the hourly column gives energy.
+	measure 'Shortfall (MWh)' = SUM ( fact_grid_hourly[shortfall_mw] )
+		formatString: #,0
+		lineageTag: 017939e5-6686-5d80-a860-6dc9fa6741e9
+
+	measure 'Stress Shortfall (MWh)' = CALCULATE ( [Shortfall (MWh)], fact_grid_hourly[is_stress_hour] = TRUE() )
+		formatString: #,0
+		lineageTag: 0b9d618d-2459-5879-bf40-2b80d429c232
+
+	/// An upper bound, not a cost. It assumes every under-forecast megawatt is
+	/// bought at the slider price, when in practice reserves and demand response
+	/// absorb part of the gap.
+	measure 'Stress Shortfall Upper Bound ($M)' = DIVIDE ( [Stress Shortfall (MWh)] * [Price per MWh Value], 1000000 )
+		formatString: \$#,0.0
+		lineageTag: f606e2ab-49c8-5c0b-bf4b-042f0ffa9b34
+
+	/// Positive means the region leans on its neighbors during its own peak,
+	/// which is when they are least likely to have anything spare.
+	measure 'Net Import at Stress (MW)' = CALCULATE ( AVERAGE ( fact_grid_hourly[net_import_mw] ), fact_grid_hourly[is_stress_hour] = TRUE() )
+		formatString: #,0
+		lineageTag: 778e9582-4139-5d74-a0b7-04272f12433f
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: db202086-54e0-5d01-9240-cb5aed0b48dd
+		summarizeBy: none
+		sourceColumn: [Column1]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("Column1", BLANK())
+
+	annotation PBI_ResultType = Table
+

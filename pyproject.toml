@@ -1,0 +1,15 @@
+[project]
+name = "grid-stress-dashboard"
+version = "1.0.0"
+description = "Does the U.S. power grid forecast worst exactly when it matters most? An analysis of EIA-930 day-ahead demand forecast error under grid stress."
+authors = [{ name = "Jose Aleman" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100

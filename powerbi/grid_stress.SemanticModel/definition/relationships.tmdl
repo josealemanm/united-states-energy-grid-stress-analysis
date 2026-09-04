@@ -1,0 +1,32 @@
+relationship 217010ca-086d-5bea-9deb-fe9d9b15cad4
+	fromColumn: fact_grid_hourly.ba_code
+	toColumn: dim_ba.ba_code
+
+relationship f71b0561-34bf-5984-b6de-4cee1d7c5eb3
+	fromColumn: fact_grid_hourly.date_key
+	toColumn: dim_date.date_key
+
+relationship 3015247a-009f-5d80-96b9-0565158c9fe3
+	fromColumn: fact_fuel_hourly.ba_code
+	toColumn: dim_ba.ba_code
+
+relationship 50d7c7f6-1281-51b9-aee7-bafc57d11c3a
+	fromColumn: fact_fuel_hourly.fuel_code
+	toColumn: dim_fuel.fuel_code
+
+relationship 67f981a8-a7ec-52de-be14-3061d88768a6
+	fromColumn: fact_fuel_hourly.date_key
+	toColumn: dim_date.date_key
+
+relationship 08cdc37d-b568-5e38-b5ce-88a02896d911
+	fromColumn: analysis_stress_penalty.ba_code
+	toColumn: dim_ba.ba_code
+
+relationship f4ef4ca5-5357-5601-98a8-2cf8d39cf593
+	fromColumn: analysis_ramp_stress_penalty.ba_code
+	toColumn: dim_ba.ba_code
+
+relationship 40c5b1da-4c9e-55ab-add5-a6b40a957c69
+	fromColumn: bootstrap_intervals.ba_code
+	toColumn: dim_ba.ba_code
+

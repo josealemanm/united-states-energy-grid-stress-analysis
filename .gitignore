@@ -1,0 +1,33 @@
+# Secrets
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Data. Raw and processed parquet are committed on purpose, about 28 MB, so the
+# Power BI model and the analysis open on another machine without an API key or
+# a 15-minute re-pull. The DuckDB warehouse stays out: 58 MB, and it rebuilds
+# from the parquet in seconds.
+data/interim/*
+# CSV copies are a 86 MB on-demand fallback (make csv); parquet is the committed form.
+data/processed/*.csv
+!data/interim/.gitkeep
+
+# Power BI. The project files under powerbi/grid_stress.SemanticModel and
+# powerbi/grid_stress.Report are the source: they are text, they diff, and
+# Power BI Desktop opens grid_stress.pbip directly. A .pbix is a build output
+# that embeds its own copy of the data, so it is not committed.
+*.pbix
+*.pbix.bak
+powerbi/.pbi/
+powerbi/**/.pbi/localSettings.json
+powerbi/**/*.abf
+
+# Ad-hoc SQL scratchpad
+scratch/
+
+# OS noise
+.DS_Store
+Thumbs.db

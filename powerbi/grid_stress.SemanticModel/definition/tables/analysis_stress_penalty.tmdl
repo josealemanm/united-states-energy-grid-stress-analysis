@@ -1,0 +1,264 @@
+/// Per-region results under the demand-stress definition, computed in the
+/// warehouse SQL rather than in DAX so the numbers in this report and the
+/// numbers in the memo cannot drift apart.
+table analysis_stress_penalty
+	lineageTag: 39d54536-4254-5610-86c0-151090589bc1
+
+	column ba_code
+		dataType: string
+		lineageTag: 42abea17-86ea-5bf6-bfb5-10582a9e3467
+		summarizeBy: none
+		sourceColumn: ba_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column ba_name
+		dataType: string
+		lineageTag: 849f7983-dadb-5973-b0b4-3e69981a20de
+		summarizeBy: none
+		sourceColumn: ba_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 71abac43-0ce5-51aa-9f17-e705dd8a3d3f
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_hours
+		dataType: int64
+		lineageTag: 98625e8d-73c4-5f5a-b1fb-14cc3afdda05
+		summarizeBy: none
+		sourceColumn: total_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column stress_hours
+		dataType: double
+		lineageTag: 0a83ce82-7879-551c-b321-e069051dc358
+		summarizeBy: sum
+		sourceColumn: stress_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_normal
+		dataType: double
+		lineageTag: a845077c-d6cf-5729-a98f-2ecf3f98bbd6
+		summarizeBy: sum
+		sourceColumn: mape_normal
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_stress
+		dataType: double
+		lineageTag: 68c376d1-3eb2-5f01-a9cf-3111b74d3da6
+		summarizeBy: sum
+		sourceColumn: mape_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_extreme
+		dataType: double
+		lineageTag: 11b401cf-ac31-5fd9-923e-105706d86682
+		summarizeBy: sum
+		sourceColumn: mape_extreme
+
+		annotation SummarizationSetBy = Automatic
+
+	column stress_penalty_pp
+		dataType: double
+		lineageTag: fbe76fca-f5ec-5326-80be-a13912c011d7
+		summarizeBy: sum
+		sourceColumn: stress_penalty_pp
+
+		annotation SummarizationSetBy = Automatic
+
+	column stress_multiple
+		dataType: double
+		lineageTag: 81ce9cec-f09d-5dc8-a1bc-2db2685d3b52
+		summarizeBy: sum
+		sourceColumn: stress_multiple
+
+		annotation SummarizationSetBy = Automatic
+
+	column p95_abs_pct_error_normal
+		dataType: double
+		lineageTag: 189a82b2-3cc7-5545-937b-7004ddcb388c
+		summarizeBy: sum
+		sourceColumn: p95_abs_pct_error_normal
+
+		annotation SummarizationSetBy = Automatic
+
+	column p95_abs_pct_error_stress
+		dataType: double
+		lineageTag: 0da96e44-e165-59ad-b444-94a53dabe9ce
+		summarizeBy: sum
+		sourceColumn: p95_abs_pct_error_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column p99_abs_pct_error_stress
+		dataType: double
+		lineageTag: 35e7f27b-720f-5052-82ea-e487a84f730d
+		summarizeBy: sum
+		sourceColumn: p99_abs_pct_error_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column worst_hour_abs_pct_error
+		dataType: double
+		lineageTag: 18059bab-3963-511e-9e1f-0b2a572aae31
+		summarizeBy: sum
+		sourceColumn: worst_hour_abs_pct_error
+
+		annotation SummarizationSetBy = Automatic
+
+	column balance_clean_hours
+		dataType: double
+		lineageTag: 3ada60e0-fcbb-5d7c-a1cb-96883a60d082
+		summarizeBy: sum
+		sourceColumn: balance_clean_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_clean
+		dataType: double
+		lineageTag: a1c13d82-58e0-558f-ab0a-58310e666b7d
+		summarizeBy: sum
+		sourceColumn: mape_clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_clean_normal
+		dataType: double
+		lineageTag: 2d0f830a-f84c-5ef9-953b-e3e5f546cca5
+		summarizeBy: sum
+		sourceColumn: mape_clean_normal
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_clean_stress
+		dataType: double
+		lineageTag: ed55cf90-cd8e-5225-9721-6ebd215ae18f
+		summarizeBy: sum
+		sourceColumn: mape_clean_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column stress_penalty_clean_pp
+		dataType: double
+		lineageTag: d6d51551-23f0-5a87-9785-45f57063a3e8
+		summarizeBy: sum
+		sourceColumn: stress_penalty_clean_pp
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_persistence_normal
+		dataType: double
+		lineageTag: b0c22fa8-93e8-5f9b-9e4c-3011b5953549
+		summarizeBy: sum
+		sourceColumn: mape_persistence_normal
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_persistence_stress
+		dataType: double
+		lineageTag: e65ab1a1-ea8c-5b7f-b5d5-1c4b62e460d9
+		summarizeBy: sum
+		sourceColumn: mape_persistence_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_seasonal_normal
+		dataType: double
+		lineageTag: de85bd37-05db-5d36-9488-ab07c2fc211b
+		summarizeBy: sum
+		sourceColumn: mape_seasonal_normal
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_seasonal_stress
+		dataType: double
+		lineageTag: a7dd8810-8430-5914-b186-da2c80d25321
+		summarizeBy: sum
+		sourceColumn: mape_seasonal_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column skill_vs_persistence_normal
+		dataType: double
+		lineageTag: 40842892-1dea-5569-8190-13c856581455
+		summarizeBy: sum
+		sourceColumn: skill_vs_persistence_normal
+
+		annotation SummarizationSetBy = Automatic
+
+	column skill_vs_persistence_stress
+		dataType: double
+		lineageTag: 2104e181-987a-5af1-b455-2a6de7be2d98
+		summarizeBy: sum
+		sourceColumn: skill_vs_persistence_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column skill_vs_seasonal_normal
+		dataType: double
+		lineageTag: 11e50ae4-0b7e-5f87-9f4e-ece22f248c27
+		summarizeBy: sum
+		sourceColumn: skill_vs_seasonal_normal
+
+		annotation SummarizationSetBy = Automatic
+
+	column skill_vs_seasonal_stress
+		dataType: double
+		lineageTag: 905eb704-996d-550b-bb21-412e39080694
+		summarizeBy: sum
+		sourceColumn: skill_vs_seasonal_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column bias_stress_pct
+		dataType: double
+		lineageTag: 831774cb-f0a5-5656-a051-c4c3e9b28ec4
+		summarizeBy: sum
+		sourceColumn: bias_stress_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_net_import_stress_mw
+		dataType: double
+		lineageTag: 1071d742-fa54-5ca7-9c4d-611e9e613a4a
+		summarizeBy: sum
+		sourceColumn: avg_net_import_stress_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_1h_ramp_mw
+		dataType: double
+		lineageTag: 44d3ef7e-59f6-5d54-be32-ad98b449799f
+		summarizeBy: sum
+		sourceColumn: max_1h_ramp_mw
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_stress_shortfall_mwh
+		dataType: double
+		lineageTag: c8696e0d-9121-554f-814e-78cc964378ff
+		summarizeBy: sum
+		sourceColumn: total_stress_shortfall_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+	partition analysis_stress_penalty = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(RepoRoot & "\data\processed\analysis_stress_penalty.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

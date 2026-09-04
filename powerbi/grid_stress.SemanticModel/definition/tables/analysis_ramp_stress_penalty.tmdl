@@ -1,0 +1,95 @@
+/// The same results under the ramp-stress definition, plus how much the two
+/// definitions overlap.
+table analysis_ramp_stress_penalty
+	lineageTag: 4576d5c6-b58d-53ce-9f50-5dc80c87e820
+
+	column ba_code
+		dataType: string
+		lineageTag: 42abea17-86ea-5bf6-bfb5-10582a9e3467
+		summarizeBy: none
+		sourceColumn: ba_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column ba_name
+		dataType: string
+		lineageTag: 849f7983-dadb-5973-b0b4-3e69981a20de
+		summarizeBy: none
+		sourceColumn: ba_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 71abac43-0ce5-51aa-9f17-e705dd8a3d3f
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_hours
+		dataType: int64
+		lineageTag: 98625e8d-73c4-5f5a-b1fb-14cc3afdda05
+		summarizeBy: none
+		sourceColumn: total_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column ramp_stress_hours
+		dataType: double
+		lineageTag: f3ff9d77-4a20-53bc-8c45-42ac182b991d
+		summarizeBy: sum
+		sourceColumn: ramp_stress_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_overlap_with_demand_stress
+		dataType: double
+		lineageTag: 436b6b95-463b-56ad-8625-77729a6d3fdb
+		summarizeBy: sum
+		sourceColumn: pct_overlap_with_demand_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_normal
+		dataType: double
+		lineageTag: a845077c-d6cf-5729-a98f-2ecf3f98bbd6
+		summarizeBy: sum
+		sourceColumn: mape_normal
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_ramp_stress
+		dataType: double
+		lineageTag: c7037fb8-c5e2-52b0-9e3c-e734e3cc8f87
+		summarizeBy: sum
+		sourceColumn: mape_ramp_stress
+
+		annotation SummarizationSetBy = Automatic
+
+	column ramp_stress_penalty_pp
+		dataType: double
+		lineageTag: 36e48e8a-a7e0-5e16-bbce-1445967d8515
+		summarizeBy: sum
+		sourceColumn: ramp_stress_penalty_pp
+
+		annotation SummarizationSetBy = Automatic
+
+	column ramp_stress_multiple
+		dataType: double
+		lineageTag: 21edc6c4-564f-5731-b3a5-56cbbca787de
+		summarizeBy: sum
+		sourceColumn: ramp_stress_multiple
+
+		annotation SummarizationSetBy = Automatic
+
+	partition analysis_ramp_stress_penalty = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(RepoRoot & "\data\processed\analysis_ramp_stress_penalty.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

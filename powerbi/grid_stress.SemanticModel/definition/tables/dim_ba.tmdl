@@ -1,0 +1,63 @@
+/// The eight balancing authorities. is_home_grid flags PJM, the grid Maryland
+/// sits on.
+table dim_ba
+	lineageTag: fa7bfb67-cc85-5b1e-a5a5-ef2a5ddd2f09
+
+	column ba_code
+		dataType: string
+		lineageTag: 42abea17-86ea-5bf6-bfb5-10582a9e3467
+		summarizeBy: none
+		sourceColumn: ba_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column ba_name
+		dataType: string
+		lineageTag: 849f7983-dadb-5973-b0b4-3e69981a20de
+		summarizeBy: none
+		sourceColumn: ba_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 71abac43-0ce5-51aa-9f17-e705dd8a3d3f
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column interconnection
+		dataType: string
+		lineageTag: 18abdc0f-7f28-50de-acf0-782f79014d64
+		summarizeBy: none
+		sourceColumn: interconnection
+
+		annotation SummarizationSetBy = Automatic
+
+	column local_tz
+		dataType: string
+		lineageTag: d1298818-f446-503f-8617-45194968bf8e
+		summarizeBy: none
+		sourceColumn: local_tz
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_home_grid
+		dataType: boolean
+		lineageTag: a642a011-152d-5eab-a440-666135f353f6
+		summarizeBy: none
+		sourceColumn: is_home_grid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_ba = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(RepoRoot & "\data\processed\dim_ba.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
