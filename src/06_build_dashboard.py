@@ -413,10 +413,25 @@ def main():
     .kpi .value{{font-size:28px;font-weight:600;color:#2E5EAA}}
     .subtitle{{color:#555}}
     .grid2{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
+    nav{{position:sticky;top:0;background:#fff;border-bottom:1px solid #ddd;
+         padding:10px 0;margin-bottom:8px;z-index:10;font-size:14px}}
+    nav a{{color:#2E5EAA;text-decoration:none;margin-right:18px}}
+    nav a:hover{{text-decoration:underline}}
+    .repo{{font-size:13px;color:#666;margin-top:4px}}
     </style></head><body>
     <h1>United States Energy Grid Stress Analysis</h1>
     <p class="subtitle">Does the U.S. power grid forecast worst exactly when accuracy matters most?
     Eight balancing authorities, {window_start} to {window_end}.</p>
+    <p class="repo">Code, data and the Power BI version:
+    <a href="https://github.com/josealemanm/united-states-energy-grid-stress-analysis">github.com/josealemanm/united-states-energy-grid-stress-analysis</a></p>
+    <nav>
+      <a href="#summary">Summary</a>
+      <a href="#anatomy">Error anatomy</a>
+      <a href="#deepdive">Stress hour deep dive</a>
+      <a href="#fuelramp">Fuel mix and ramp</a>
+      <a href="#lens">Two definitions of stress</a>
+      <a href="#methodology">Method and data quality</a>
+    </nav>
 
     <h2 id="summary">Page 1 &middot; Summary</h2>
     <div class="kpi-row">
